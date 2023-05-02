@@ -30,4 +30,4 @@ With the following volumes:
 
 ### Here is an example diagram of the expected result:
 
-<img height=900px width=800px src="https://github.com/csalihburak/Inception/blob/master/images/image.png"/>
+<img height=900px width=800px src="https://github.com/egulerr/Inception/blob/main/inception_readme.png"/>
