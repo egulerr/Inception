@@ -1,0 +1,57 @@
+version: '3'
+services:
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./requirements/nginx/Dockerfile
+    container_name: nginx
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    volumes:
+      - wp:/var/www/html
+    depends_on:
+      - wordpress
+  mariadb:
+    container_name: mariadb
+    networks:
+      - inception
+    build:
+      context: .
+      dockerfile: ./requirements/mariadb/Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  wordpress:
+    build:
+      context: .
+      dockerfile: ./requirements/wordpress/Dockerfile
+    container_name: wordpress
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    volumes:
+      - wp:/var/www/html
+    ports:
+      - "9000:9000"
+
+volumes:
+  wp:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/eguler/data/wordpress
+  db:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/eguler/data/mysql
+
+networks:
+  inception:
+    driver: bridge
