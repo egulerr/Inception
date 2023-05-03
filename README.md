@@ -1,4 +1,4 @@
-# inception
+# Inception
 This project aims to deepen the knowledge of system administration.
 
 Use of <strong>dockerfile</strong> for the creation and management of custom images, micro services.
